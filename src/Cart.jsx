@@ -1,11 +1,17 @@
 import React from 'react'
 
-const Cart = ({ cart, DeleteCart }) => {
-  
+const Cart = ({ cart, DeleteCart,total }) => {
+  let Price = total().toFixed(2);
   return (
-  
-    <div className='w-full h-full flex flex-wrap'> 
-       {
+    <div>
+      
+                      <h1 className='text-3xl font-sans font-bold italic md:text-5xl '>TOTAL PRICE : ${Price}</h1>
+      
+        
+    <div className='w-full h-full flex flex-wrap'>
+    
+      {
+        
               cart.map((dame ,k) => ( 
                 <div key={k} className='w-full sm:w-1/2 justify-center md:w-1/3 lg:w-1/4 p-10 transition duration-500 ease-in-out transform scale-75 hover:fill-white hover:scale-90 border border-gray-900'> 
                   <h2 className='text-3xl font-sans font-bold italic'>{dame.category}</h2>
@@ -15,13 +21,16 @@ const Cart = ({ cart, DeleteCart }) => {
                     onClick={() => DeleteCart(k)}>Delete</button>
                   
                 
-                </div>
+          </div>
+           
                 
-              ))
+          ))
+          
         
       }
-     
-    </div>
+
+      </div>
+      </div>
   )
 }
 

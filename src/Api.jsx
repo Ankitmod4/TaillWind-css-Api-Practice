@@ -7,6 +7,7 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 const Api = () => {
     const [data, setdata] = useState([])
     const [cart, setcart] = useState([]);
+    const [price, setprice] = useState([]);
     const ApiCall = async () => {
        
         try {
@@ -24,7 +25,8 @@ const Api = () => {
     const AddtoCart = (products) => {
 
         setcart([...cart, products]);
-        console.log(cart);
+        // console.log(cart);
+        
     }
     const DeleteCart = (k) => {
         const filters = cart.filter((prev, id) => {
@@ -33,6 +35,12 @@ const Api = () => {
         setcart(filters);
         
     }
+    const totalPrice = () => {
+        let total = cart.reduce((total, product) => total + product.price, 0);
+        console.log(total);
+        return total;
+    } 
+    
     return (  
         <BrowserRouter>
             <div className='flex flex-wrap w-auto h-auto '>
@@ -62,19 +70,21 @@ const Api = () => {
                                 > 
                                     Add to Cart 
                                 </button>
+                                
+
                             </div>
                         ))} 
                         
                     </>
                 } /> 
-                <Route path="/cart" element={<Cart cart={cart} DeleteCart={DeleteCart} />} />
-            </Routes>
+                <Route path="/cart" element={<Cart cart={cart} DeleteCart={DeleteCart} total={totalPrice} />} />
+                </Routes>
         </div>
     </BrowserRouter>
   )
 }
 
-export default Api
+export default Api;
 
 
 
