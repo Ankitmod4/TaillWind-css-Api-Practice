@@ -25,7 +25,6 @@ const Api = () => {
     const AddtoCart = (products) => {
 
         setcart([...cart, products]);
-        // console.log(cart);
         
     }
     const DeleteCart = (k) => {
@@ -60,7 +59,8 @@ const Api = () => {
                 <Route path="/" element={
                     <>
                         {data.map((product, i) => (
-                            <div key={i} className='w-full sm:w-1/2 justify-center md:w-1/3 lg:w-1/4 p-10 transition duration-500 ease-in-out transform scale-75 hover:fill-white hover:scale-90 border border-gray-900' >
+                            <div key={i} className='w-full sm:w-1/2 justify-center md:w-1/3 lg:w-1/4 p-10 transition duration-500 ease-in-out transform scale-75 hover:fill-white hover:scale-90 border border-gray-900 flex' >
+                                <div className=''>
                                 <h2 className='text-3xl font-sans font-bold italic	'>{product.category}</h2>
                                 <h1 className='font-bold text-red-500 text-3xl text-center m-3	'>${product.price}</h1>
                                 <img src={product.image} alt="" width={200} className='h-60'  />
@@ -69,8 +69,8 @@ const Api = () => {
                                     onClick={() => AddtoCart(product)}
                                 > 
                                     Add to Cart 
-                                </button>
-                                
+                                </button> 
+                                </div>
 
                             </div>
                         ))} 
