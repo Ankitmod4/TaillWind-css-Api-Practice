@@ -3,7 +3,10 @@ import axios from 'axios'
 import { useEffect,useState } from 'react';
 import Cart from './Cart';
 import { Link } from 'react-router-dom';
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Api = () => {
     const [data, setdata] = useState([])
     const [cart, setcart] = useState([]);
@@ -23,7 +26,7 @@ const Api = () => {
         ApiCall();
     }, [])
     const AddtoCart = (products) => {
-
+        toast.success("Product Added Successfully");
         setcart([...cart, products]);
         
     }
@@ -31,6 +34,7 @@ const Api = () => {
         const filters = cart.filter((prev, id) => {
             return k != id;
         })
+        toast.error("Product Deleted");
         setcart(filters);
         
     }
@@ -42,6 +46,7 @@ const Api = () => {
     
     return (  
         <BrowserRouter>
+            <ToastContainer />
             <div className='flex flex-wrap w-auto h-auto '>
                 <div className='flex  h-full w-full justify-between bg-slate-800 '>
             <Link to="/cart" className='block text-center mt-4 m-6 '>
